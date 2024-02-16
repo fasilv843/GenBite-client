@@ -32,11 +32,6 @@ export class PasswordGenerateComponent {
   }
 
   onSubmit(): void {
-    // this.form.get('password')?.setValue(this.generateRandomString(this.length, { numbers: true }))
-    console.log(this.form.controls, 'form controls');
-    console.log(this.form.get('length'), 'length control');
-    
-    
     if (this.form.valid) {
       const data = this.form.getRawValue()
       const { length, lowercase, uppercase, numbers, symbols } = data
@@ -45,33 +40,25 @@ export class PasswordGenerateComponent {
     }
   }
   
-  generateRandomString(length: number, options: StringOptions = {}): string {
-    // Default configuration, ensuring at least one char from each category
-    const defaultOptions = {
-      numbers: true,
-      lowercase: true,
-      uppercase: true,
-      symbols: true
-    };
-  
-    // Merge user options with defaults
-    const mergedOptions = { ...defaultOptions, ...options };
-
-    console.log(mergedOptions, 'options after merge');
-    
+  generateRandomString(length: number, options: StringOptions = {
+    numbers: true,
+    lowercase: true,
+    uppercase: true,
+    symbols: true
+  }): string {
   
     // Build character set based on user options
     let charSet = "";
-    if (mergedOptions.numbers) {
+    if (options.numbers) {
       charSet += "01234567890123456789";
     }
-    if (mergedOptions.uppercase) {
+    if (options.uppercase) {
       charSet += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     }
-    if (mergedOptions.lowercase) {
+    if (options.lowercase) {
       charSet += "abcdefghijklmnopqrstuvwxyz";
     }
-    if (mergedOptions.symbols) {
+    if (options.symbols) {
       charSet += "!@#$%^&*()_+-=[]{};':\"\\|,<.>/?~";
     }
   
