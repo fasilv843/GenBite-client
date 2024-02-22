@@ -15,8 +15,4 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     initFlowbite()
   }
-
-  // onClick(): void {
-  //   console.log('clicked');
-  // }
 }
